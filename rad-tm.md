@@ -1,5 +1,14 @@
 # RaD-TM — Rapid Developer-driven Threat Modeling
 
+| Contributor     | E-Mail                            |
+|-----------------|-----------------------------------|
+| Alan Pestrin    | <alan.pestrin@thomsonreuters.com> |
+| Andrea Scaduto  | <andrea@secureflag.com>           |
+| Andrea Cardaci  | <acardaci@secureflag.com>         |
+| Andrew Hainault | <andrew.hainault@aon.co.uk>       |
+| Grant Ongers    | <grant.ongers@owasp.org>          |
+| Stefano Ciccone | <stefano.ciccone@secureflag.com>  |
+
 ## The RaD-TM Methodology
 
 While threat modeling is widely recognized as a critical step in building secure software, traditional approaches often attempt to model an entire application all at once. This requires a comprehensive understanding of the system from various teams, including engineering, operations, and security, which can produce overly broad findings that are difficult to refine and maintain at scale.
