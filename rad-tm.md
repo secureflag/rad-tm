@@ -1991,7 +1991,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <th>Threat</th>
 <th>Applicable Components</th>
 <th>Rationale & Next Steps</th>
-<th>Risk Status</th>
+<th>Threat Status</th>
 <th>Severity</th>
 </tr>
 
