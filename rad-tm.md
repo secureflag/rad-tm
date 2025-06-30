@@ -13,7 +13,7 @@
 
 While threat modeling is widely recognized as a critical step in building secure software, traditional approaches often attempt to model an entire application all at once. This requires a comprehensive understanding of the system from various teams, including engineering, operations, and security, which can produce overly broad findings that are difficult to refine and maintain at scale.
 
-In modern software development, the shift-left movement emphasizes addressing potential issues early in the development lifecycle. Our Rapid Developer-driven Threat Modeling (RaD-TM) empowers software developers to incorporate threat modeling seamlessly into the development workflow. It enables them to generate threat models of individual pieces of functionality after the earliest design phase to identify and address security risks before development begins. This approach allows for quick turnarounds for security reviews and minimizes costly security rework later in the process.
+In modern software development, the shift-left movement emphasizes addressing potential issues early in the development lifecycle. Our Rapid Developer-driven Threat Modeling (RaD-TM) empowers software developers to incorporate threat modeling seamlessly into the development workflow. It enables them to generate threat models of individual pieces of functionality after the earliest design phase to identify and address security threats before development begins. This approach allows for quick turnarounds for security reviews and minimizes costly security rework later in the process.
 
 Our vision is rooted in a systematic approach to building secure software containing four key stages: **Requirements**, **Design**, **Threat Modeling**, and **Development**. By integrating threat modeling during the design phase, teams are better equipped to anticipate potential risks and address them when changes are easiest and least costly to implement.
 
@@ -25,13 +25,13 @@ This methodology is versatile and designed to fit different contexts:
 
 A further limitation of traditional threat modeling is its reliance on the specialized expertise of security professionals. Most developers are not trained to systematically identify or prioritize threats, which makes traditional threat modeling methods challenging to implement without expert guidance. As these experts are scarce, it limits both the scalability of threat modeling and its adoption across large or fast-moving development organizations. The goal of this methodology is to empower developers to perform effective, lightweight threat modeling on individual features during the development workflow without requiring deep security expertise. The methodology is based on simplicity, speed, and repeatability.
 
-Risk Templates introduce a novel approach to security standardization by eliminating the need for specialized security expertise. Rather than generating a massive threat model containing hundreds of items, our method focuses developers on identifying threats from a concise set of lists of up to 20 high-priority threats. These Risk Templates are pre-defined collections of threats and corresponding controls, each tailored to specific compliance standards, application environments, or organizational priorities. This streamlined structure guides developers—whether working individually or as part of a teamto systematically identify and mitigate risks, making security a more accessible and efficient process.
+Threat Templates introduce a novel approach to security standardization by eliminating the need for specialized security expertise. Rather than generating a massive threat model containing hundreds of items, our method focuses developers on identifying threats from a concise set of lists of up to 20 high-priority threats. These Threat Templates are pre-defined collections of threats and corresponding controls, each tailored to specific compliance standards, application environments, or organizational priorities. This streamlined structure guides developers—whether working individually or as part of a team to systematically identify and mitigate threats, making security a more accessible and efficient process.
 
 The methodology makes **threat modeling accessible to all developers**, not just security experts. Its **lightweight nature** ensures it does not add significant overhead to the development workflow. Moreover, it supports **continuous refinement**, allowing threat models to evolve alongside the application's functionality, and ensures that security remains integrated throughout the development lifecycle.
 
-By equipping developers with a structured, accessible approach to threat modeling, we enable organizations to deliver more secure software while reducing the time and effort spent on addressing security issues later in the development process. Below is a description of the six phases of our RaD-TM methodology, designed to be quick, easy, and seamlessly integrated into the development workflow. By breaking threat modeling into smaller, well-defined steps, any developer can identify and address security risks without undue overhead.
+By equipping developers with a structured, accessible approach to threat modeling, we enable organizations to deliver more secure software while reducing the time and effort spent on addressing security issues later in the development process. Below is a description of the six phases of our RaD-TM methodology, designed to be quick, easy, and seamlessly integrated into the development workflow. By breaking threat modeling into smaller, well-defined steps, any developer can identify and address security threats without undue overhead.
 
-Below is a description of the six phases of our Rapid Developer-driven Threat Modeling (RaD-TM) methodology, designed to be quick, easy, and seamlessly integrated into the development workflow. By breaking threat modeling into smaller, well-defined steps, any developer can identify and address security risks without undue overhead.
+Below is a description of the six phases of our Rapid Developer-driven Threat Modeling (RaD-TM) methodology, designed to be quick, easy, and seamlessly integrated into the development workflow. By breaking threat modeling into smaller, well-defined steps, any developer can identify and address security threats without undue overhead.
 
 ### Produce a Graphical Representation
 
@@ -55,7 +55,7 @@ Start by creating a clear graphical representation of the functionality. This st
 
 **Deliverable**
 
-A visual representation of the feature, showing its components, interactions, and data flows. This diagram sets the foundation for identifying security risks.
+A visual representation of the feature, showing its components, interactions, and data flows. This diagram sets the foundation for identifying security threats.
 
 ### Identify Trust Boundaries
 
@@ -91,9 +91,9 @@ A list of trust boundaries identified within the system. Each of them includes o
 
 - **Privilege Changes:** Where roles or permissions escalate (e.g., user-to-admin).
 
-### Identify Threats Using Risk Templates
+### Identify Threats Using Threat Templates
 
-**Risk Templates** empower developers to conduct threat modeling independently, reducing reliance on security experts. These concise, pre-defined collections of (max) **20 threats** and corresponding controls are tailored to specific contexts, such as:
+**Threat Templates** empower developers to conduct threat modeling independently, reducing reliance on security experts. These concise, pre-defined collections of (max) **20 threats** and corresponding controls are tailored to specific contexts, such as:
 
 - **Compliance Standards** (e.g., FedRAMP, PCI DSS, HIPAA, GDPR).
 
@@ -103,13 +103,13 @@ A list of trust boundaries identified within the system. Each of them includes o
 
 - **Organizational Priorities** (e.g., vulnerability patterns or high-risk areas for the business).
 
-Risk Templates streamline threat identification by focusing on relevant risks for a feature or system, ensuring no critical threats are missed. Their structured approach simplifies the process, enabling developers to work efficiently without requiring deep security knowledge.
+Threat Templates streamline threat identification by focusing on relevant threats for a feature or system, ensuring no critical threats are missed. Their structured approach simplifies the process, enabling developers to work efficiently without requiring deep security knowledge.
 
-For best results, **Risk Templates must be created and reviewed by a security expert**. Refer to the dedicated section on **Building Risk Templates** in this paper for detailed guidance on how to develop and maintain these templates effectively.
+For best results, **Threat Templates must be created and reviewed by a security expert**. Refer to the dedicated section on **Building Threat Templates** in this paper for detailed guidance on how to develop and maintain these templates effectively.
 
 **Steps**
 
-1. **Select a Risk Template Aligned to a Context** (reference the Appendix, for example, Risk Templates):
+1. **Select a Threat Template Aligned to a Context** (reference the Appendix, for example, Threat Templates):
 
     - Compliance Context: (e.g., FedRAMP, PCI DSS, HIPAA, GDPR).
 
@@ -119,17 +119,17 @@ For best results, **Risk Templates must be created and reviewed by a security ex
 
     - Organizational Priorities: (e.g., threats identified from internal vulnerability management programs).
 
-    Multiple risk templates can be selected depending on the audience working on the Threat Model. For example, in the context of a financial application within the scope for PCI DSS and deployed on AWS, developers can use the PCI DSS and Secure Code Implementation Templates while DevOps engineers can use the AWS Risk Template. Reference the full example for more information.
+    Multiple threat templates can be selected depending on the audience working on the Threat Model. For example, in the context of a financial application within the scope for PCI DSS and deployed on AWS, developers can use the PCI DSS and Secure Code Implementation Templates while DevOps engineers can use the AWS Threat Template. Reference the full example for more information.
 
 2. **Match Threats to the Feature:** Identify threats from the template that apply to the feature's components or workflows.
 
 **Deliverable**
 
-A list of threats relevant to the feature based on the selected Risk Template.
+A list of threats relevant to the feature based on the selected Threat Template.
 
 **Example**
 
-Example of Selected Threats from the PCI DSS Risk Template for a Banking Application.
+Example of Selected Threats from the PCI DSS Threat Template for a Banking Application.
 
 <table>
 
@@ -169,9 +169,9 @@ Example of Selected Threats from the PCI DSS Risk Template for a Banking Applica
 
 </table>
 
-### Identify Controls Using Risk Templates
+### Identify Controls Using Threat Templates
 
-For each threat identified, developers select corresponding **pre-approved** controls from the same Risk Template while having the flexibility to incorporate additional security measures as needed. These controls should align with:
+For each threat identified, developers select corresponding **pre-approved** controls from the same Threat Template while having the flexibility to incorporate additional security measures as needed. These controls should align with:
 
 - **Compliance Standards** (e.g., PCI DSS requirements, NIST 800-53).
 
@@ -183,7 +183,7 @@ For each threat identified, developers select corresponding **pre-approved** con
 
 **Steps**
 
-1. **Identify Controls:** For each threat, list the controls provided in the Risk Template.
+1. **Identify Controls:** For each threat, list the controls provided in the Threat Template.
 
 2. **Evaluate Implementation:**
 
@@ -195,7 +195,7 @@ For each threat identified, developers select corresponding **pre-approved** con
 
 **Deliverable**
 
-A list of controls from the selected Risk Template, specifically designed to mitigate the risks posed by the identified threats.
+A list of controls from the selected Threat Template, specifically designed to mitigate the risks posed by the identified threats.
 
 **Example**
 
@@ -266,25 +266,27 @@ For each identified threat, perform the following steps.
 
 **Steps**
 
-1. **Assess Severity:** Update the default severity rating of **High**, **Moderate**, or **Low** based on the likelihood of the threat occurring, its potential impact, and on the controls which have been already fully or partially implemented as documented in **Identify Controls Using Risk Templates**.
+1. **Assess Severity:** Update the default severity rating of **High**, **Moderate**, or **Low** based on the likelihood of the threat occurring, its potential impact, and on the controls which have been already fully or partially implemented as documented in **Identify Controls Using Threat Templates**.
 
-    **Note:** Each threat in a Risk Template typically comes with a default severity rating to streamline evaluation and prioritization.
+    **Note:** Each threat in a Threat Template typically comes with a default severity rating to streamline evaluation and prioritization.
 
-2. **Determine Risk Status:**
+2. **Determine Threat Status:**
 
     - **Mitigated:** The threat has been fully addressed through implemented controls.
 
-    - **Risk Accepted:** The residual risk is acknowledged and accepted because of low likelihood, minor impact, or a business decision.
+    - **Accepted:** The threat is acknowledged and accepted because of low likelihood, minor impact, or a business decision.
 
     - **Open:** The threat remains unaddressed due to incomplete or missing controls.
 
-3. **Provide Rationale:** Briefly explain why the threat is categorized as mitigated, risk accepted, or open. Propose actions or mitigations to address the remaining risks.
+3. **Provide Rationale:** Briefly explain why the threat is categorized as mitigated, accepted, or open. Propose actions or mitigations to address the remaining threats.
 
 **Note:** Risk assessment considerations, including residual risk evaluation, are inherently tied to an organization's specific risk appetite and security posture. These aspects involve subjective judgments on impact and likelihood, which can vary significantly between organizations based on their controls and priorities. As such, they extend beyond the scope of this methodology, which focuses on a streamlined, developer-friendly approach to identifying and addressing threats. Instead of using risk ratings, we focus solely on severity ratings, simplifying the process while maintaining a practical approach to security. By avoiding complex risk assessments, we improve the chances of developer adoption, ensuring security is integrated efficiently without unnecessary overhead.
 
 **Deliverable**
 
-A residual risk report including all threats, severity ratings, and proposed mitigations. Focus on high-risk unmitigated threats first and prioritise low-risk threats for later review according to the organization risk acceptance criteria.
+A report including all threats, severity ratings, and proposed mitigations.
+
+Focus on high-severity unmitigated threats first and prioritise low-severity threats for later review.
 
 **Example**
 
@@ -296,7 +298,7 @@ Threat Assessment Table Example.
 <th>Threat</th>
 <th>Applicable Components</th>
 <th>Rationale & Next Steps</th>
-<th>Risk Status</th>
+<th>Threat Status</th>
 <th>Severity</th>
 </tr>
 
@@ -361,7 +363,7 @@ Threat Assessment Table Example.
 
 - List of identified threats and linked controls
 
-- Control implementation status and residual risks
+- Control implementation status and accepted threats
 
 - Mitigation plans for any unaddressed issues
 
@@ -369,19 +371,19 @@ Threat Assessment Table Example.
 
 **Integrate** threat modeling into routine workflows (e.g., feature refinement or sprint planning). Leverage checklists, templates, or automated tools to generate or update models automatically, reducing manual overhead and fostering continuous security awareness.
 
-## Building Risk Templates
+## Building Threat Templates
 
-Creating effective Risk Templates is best done by security experts, who curate a focused set of threats and corresponding controls tailored to specific compliance standards, application environments, or organizational needs.
+Creating effective Threat Templates is best done by security experts, who curate a focused set of threats and corresponding controls tailored to specific compliance standards, application environments, or organizational needs.
 
-Risk Templates serve as the core enabler of the RaD-TM methodology by allowing organizations to have their developers focus on a concise list—no more than 20 items—tailored to each new critical functionality. This developer-focused approach removes the need for extensive brainstorming and reduces complexity while ensuring that threats and controls remain aligned with compliance and context-specific priorities. By reusing pre-approved templates, organizations simplify and accelerate their threat modeling process, maintaining a balance between thoroughness and usability through a manageable list of (ideally) a maximum of 20 entries. As a result, threat modeling becomes both accessible to developers and robust in upholding high security and compliance standards.
+Threat Templates serve as the core enabler of the RaD-TM methodology by allowing organizations to have their developers focus on a concise list—no more than 20 items—tailored to each new critical functionality. This developer-focused approach removes the need for extensive brainstorming and reduces complexity while ensuring that threats and controls remain aligned with compliance and context-specific priorities. By reusing pre-approved templates, organizations simplify and accelerate their threat modeling process, maintaining a balance between thoroughness and usability through a manageable list of (ideally) a maximum of 20 entries. As a result, threat modeling becomes both accessible to developers and robust in upholding high security and compliance standards.
 
-This chapter provides a step-by-step guide for creating Risk Templates, using threats and controls relevant to PCI DSS as an example. Alternatively, threats can be derived from CIS Benchmarks or the NIST Cybersecurity Framework (CSF), with controls mapped from NIST SP 800-53.
+This chapter provides a step-by-step guide for creating Threat Templates, using threats and controls relevant to PCI DSS as an example. Alternatively, threats can be derived from CIS Benchmarks or the NIST Cybersecurity Framework (CSF), with controls mapped from NIST SP 800-53.
 
-Reference the Appendix for examples of Risk Templates.
+Reference the Appendix for examples of Threat Templates.
 
-### Define the Scope of the Risk Template
+### Define the Scope of the Threat Template
 
-Clearly establish the scope and context for the Risk Template to determine which threats and controls are most relevant.
+Clearly establish the scope and context for the Threat Template to determine which threats and controls are most relevant.
 
 - **Compliance Context:** Is the template aimed at PCI DSS, HIPAA, GDPR, or another standard?
 
@@ -405,9 +407,9 @@ Extract the most pertinent threats that align with the identified scope. For exa
 
 Map threats to specific, actionable controls. Organize the selected threats and mapped controls into a concise, developer-friendly format. Each threat should have one or more controls clearly listed for quick reference.
 
-### Update and Maintain the Risk Template
+### Update and Maintain the Threat Template
 
-Risk Templates should evolve over time:
+Threat Templates should evolve over time:
 
 - **Leverage Vulnerability Data:** Update templates based on recurring vulnerabilities identified in penetration tests or incident reports.
 
@@ -415,7 +417,7 @@ Risk Templates should evolve over time:
 
 - **Incorporate Feedback:** Refine templates based on developer input and lessons learned during threat modeling.
 
-## Example Risk Template
+## Example Threat Template
 
 ### PCI DSS
 
@@ -937,9 +939,9 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 - **Rationale:** The database resides in a more restricted VPC, typically with tighter network and IAM constraints. Traffic crossing from the Private VPC to the Database VPC must satisfy additional security conditions (e.g., security group rules, IAM auth, or TLS connections). This boundary reflects heightened trust and data sensitivity.
 
-### Identify Threats Using Risk Templates
+### Identify Threats Using Threat Templates
 
-#### Risk Template: PCI DSS
+#### Threat Template: PCI DSS
 
 <table>
 
@@ -1015,7 +1017,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-#### Risk Template: Secure Code Implementation
+#### Threat Template: Secure Code Implementation
 
 <table>
 
@@ -1140,7 +1142,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-#### Risk Template: AWS
+#### Threat Template: AWS
 
 <table>
 
@@ -1279,9 +1281,9 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-### Identify Controls Using Risk Templates
+### Identify Controls Using Threat Templates
 
-#### Risk Template: PCI DSS
+#### Threat Template: PCI DSS
 
 <table>
 
@@ -1422,7 +1424,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-#### Risk Template: Secure Code Implementation
+#### Threat Template: Secure Code Implementation
 
 <table>
 
@@ -1624,7 +1626,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-#### Risk Template: AWS
+#### Threat Template: AWS
 
 <table>
 
@@ -1829,7 +1831,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 ### Rate and Prioritize Threats
 
-#### Risk Template: PCI DSS
+#### Threat Template: PCI DSS
 
 <table>
 
@@ -1837,7 +1839,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <th>Threat</th>
 <th>Applicable Components</th>
 <th>Rationale & Next Steps</th>
-<th>Risk Status</th>
+<th>Threat Status</th>
 <th>Severity</th>
 </tr>
 
@@ -1959,7 +1961,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <td>Lack of Regular Security Assessments</td>
 <td>Global</td>
 <td>Automated scans and tools are not configured, but a penetration test is scheduled once the functionality is completed.</td>
-<td>Risk Accepted</td>
+<td>Accepted</td>
 <td>Moderate</td>
 </tr>
 
@@ -1967,7 +1969,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <td>Inadequate Change Management</td>
 <td>Global</td>
 <td>An internal Git repository is in place and pre-approved CI/CD pipelines are used. However, the documentation of the new functionality is lacking.</td>
-<td>Risk Accepted</td>
+<td>Accepted</td>
 <td>Low</td>
 </tr>
 
@@ -1981,7 +1983,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-#### Risk Template: Secure Code Implementation
+#### Threat Template: Secure Code Implementation
 
 <table>
 
@@ -1989,7 +1991,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <th>Threat</th>
 <th>Applicable Components</th>
 <th>Rationale & Next Steps</th>
-<th>Risk Status</th>
+<th>Threat Status</th>
 <th>Severity</th>
 </tr>
 
@@ -2087,13 +2089,13 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <td rowspan="2">OS Command Injection</td>
 <td>Java Web App</td>
 <td>The component does not involve any operating system interactions.</td>
-<td>Risk Accepted</td>
+<td>Accepted</td>
 <td>-</td>
 </tr>
 <tr>
 <td>Fund Transfer Service</td>
 <td>The component does not involve any operating system interactions.</td>
-<td>Risk Accepted</td>
+<td>Accepted</td>
 <td>-</td>
 </tr>
 
@@ -2195,7 +2197,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 </table>
 
-#### Risk Template: AWS
+#### Threat Template: AWS
 
 <table>
 
@@ -2203,7 +2205,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <th>Threat</th>
 <th>Applicable Components</th>
 <th>Rationale & Next Steps</th>
-<th>Risk Status</th>
+<th>Threat Status</th>
 <th>Severity</th>
 </tr>
 
@@ -2401,7 +2403,7 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 <tr>
 <td>Fund Transfer Service</td>
 <td>Automatic rotation set for some secrets, but older secrets remain static. Reviewing resource-based policies for tighter access.</td>
-<td>Risk Accepted</td>
+<td>Accepted</td>
 <td>Low</td>
 </tr>
 
@@ -2409,11 +2411,11 @@ Threat Modeling for "Transfer Funds Between Accounts" in a Banking Application.
 
 ### Document Results
 
-#### Risk Template: PCI DSS
+#### Threat Template: PCI DSS
 
 **Summary of Findings**
 
-- The PCI DSS Risk Template applied to the "Transfer Funds" functionality **identified 18 threats**, of which:
+- The PCI DSS Threat Template applied to the "Transfer Funds" functionality **identified 18 threats**, of which:
 
     - 12 are mitigated.
 
@@ -2463,11 +2465,11 @@ Moderate Severity:
 
     - Mitigation: Encrypt backups; finalize revised backup policy.
 
-#### Risk Template: Secure Code Implementation
+#### Threat Template: Secure Code Implementation
 
 **Summary of Findings**
 
-- The Secure Code Implementation Risk Template applied to the "Transfer Funds" functionality **identified 27 threats**, of which:
+- The Secure Code Implementation Threat Template applied to the "Transfer Funds" functionality **identified 27 threats**, of which:
 
     - 18 are mitigated.
 
@@ -2535,11 +2537,11 @@ Moderate Severity:
 
     - Mitigation: Deploy SIEM fully; monitor logs actively.
 
-#### Risk Template: AWS
+#### Threat Template: AWS
 
 **Summary of Findings**
 
-- The AWS Risk Template applied to the "Transfer Funds" functionality **identified 27 threats**, of which:
+- The AWS Threat Template applied to the "Transfer Funds" functionality **identified 27 threats**, of which:
 
     - 16 are mitigated.
 
