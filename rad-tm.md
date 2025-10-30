@@ -417,7 +417,7 @@ Threat Templates should evolve over time:
 
 - **Incorporate Feedback:** Refine templates based on developer input and lessons learned during threat modeling.
 
-## Example Threat Template
+## Example Threat Templates
 
 ### PCI DSS
 
@@ -870,6 +870,214 @@ Threat Templates should evolve over time:
 </tr>
 
 </table>
+
+<!-- AZURE -->
+  ### Azure
+  <table>
+    <tr>
+      <th>Threat</th><th>Description</th><th>Severity Rating</th><th>Suggested Controls</th>
+    </tr>
+    <tr><td>Compromised Azure AD account</td><td>An attacker gains access to an Azure AD user or admin account and controls subscriptions or data.</td><td>High</td><td>Enforce MFA, conditional access, passwordless auth, disable legacy protocols.</td></tr>
+    <tr><td>Stolen service principal or client secret</td><td>Leaked or hard-coded client secrets allow unauthorized automation or API access.</td><td>High</td><td>Use managed identities, Key Vault secret rotation, audit App Registrations.</td></tr>
+    <tr><td>Over-privileged RBAC roles</td><td>Excessive permissions on users or service principals increase attack surface.</td><td>High</td><td>Implement least privilege, review RBAC assignments, use PIM for JIT access.</td></tr>
+    <tr><td>Public Storage Account containers</td><td>Blob containers set to public allow data leakage.</td><td>High</td><td>Disable public access, use Private Endpoints, monitor anonymous access.</td></tr>
+    <tr><td>Key Vault public endpoint exposure</td><td>Vault accessible from internet without network restrictions.</td><td>High</td><td>Restrict via Private Endpoint and access policies, enable firewall rules.</td></tr>
+    <tr><td>Missing patch management on VMs</td><td>Outdated images expose known vulnerabilities.</td><td>High</td><td>Use Update Management, hardened base images, Defender for Cloud.</td></tr>
+    <tr><td>NSG overly permissive rules</td><td>Open inbound/outbound traffic allows lateral movement or external exposure.</td><td>High</td><td>Restrict NSG rules, apply least privilege networking, log NSG flows.</td></tr>
+    <tr><td>Misconfigured Azure Firewall / WAF</td><td>Weak or absent layer-7 filtering allows attacks through web endpoints.</td><td>Moderate</td><td>Enable WAF with OWASP rules, restrict inbound IPs, monitor logs.</td></tr>
+    <tr><td>Shared admin accounts</td><td>Shared credentials limit accountability and increase compromise risk.</td><td>Moderate</td><td>Use individual accounts, enforce PIM, disable shared secrets.</td></tr>
+    <tr><td>Missing diagnostic / activity logs</td><td>Incomplete logging delays incident detection.</td><td>Moderate</td><td>Enable Azure Monitor, send logs to Sentinel, ensure retention policies.</td></tr>
+    <tr><td>Exposed management ports (RDP/SSH)</td><td>Directly exposed ports to internet allow brute force or remote access.</td><td>High</td><td>Use Just-in-Time (JIT) VM access, restrict IPs, require VPN.</td></tr>
+    <tr><td>Misconfigured App Service auth</td><td>Web apps not enforcing authentication allow data exposure.</td><td>High</td><td>Enable Azure AD or OAuth auth, require HTTPS, disable anonymous access.</td></tr>
+    <tr><td>Data not encrypted at rest</td><td>Storage or DB without encryption enable data theft.</td><td>High</td><td>Use Azure Storage Service Encryption, TDE for SQL, customer-managed keys.</td></tr>
+    <tr><td>Weak key rotation policy</td><td>Keys and secrets not rotated regularly remain vulnerable.</td><td>Moderate</td><td>Automate rotation, use Managed Identities, audit expiry dates.</td></tr>
+    <tr><td>Insufficient backup protection</td><td>Backup storage can be deleted or overwritten by attacker.</td><td>Moderate</td><td>Enable soft delete and immutable backups, restrict delete permissions.</td></tr>
+    <tr><td>Unrestricted outbound internet access</td><td>Workloads can reach arbitrary endpoints, risk of data exfiltration.</td><td>Moderate</td><td>Use NSG egress restrictions, proxy/firewall, Defender for Cloud egress alerts.</td></tr>
+    <tr><td>Lack of tagging / asset inventory</td><td>Untracked resources create blind spots for security monitoring.</td><td>Low-Moderate</td><td>Enforce tagging policy, use Azure Policy for compliance and inventory.</td></tr>
+    <tr><td>Resource locks missing</td><td>Critical resources can be deleted by mistake or attacker.</td><td>Moderate</td><td>Apply resource locks (CanNotDelete), audit removal attempts.</td></tr>
+    <tr><td>Misconfigured Azure Policy compliance</td><td>Policies not enforced allow non-compliant deployments.</td><td>Moderate</td><td>Use initiative assignments, deployIfNotExists rules, monitor compliance.</td></tr>
+    <tr><td>Insecure API Management configuration</td><td>APIs expose sensitive backend endpoints.</td><td>High</td><td>Use OAuth 2.0, validate JWT tokens, enable rate limiting and logging.</td></tr>
+  </table>
+
+
+  <!-- GCP -->
+  ### GCP
+  <table>
+    <tr>
+      <th>Threat</th><th>Description</th><th>Severity Rating</th><th>Suggested Controls</th>
+    </tr>
+    <tr><td>Leaked service account JSON key</td><td>Static credentials leaked allow full API access.</td><td>High</td><td>Avoid long-lived keys, prefer Workload Identity, rotate and disable unused keys.</td></tr>
+    <tr><td>Public Cloud Storage bucket</td><td>Bucket misconfigured for public access leaks data.</td><td>High</td><td>Disable public ACLs, enforce uniform bucket-level access, use IAM only.</td></tr>
+    <tr><td>Over-privileged IAM roles</td><td>Excessive permissions allow privilege escalation.</td><td>High</td><td>Apply least privilege, audit IAM bindings, use organization-level policies.</td></tr>
+    <tr><td>Exposed GKE cluster master endpoint</td><td>Control plane open to internet allows exploitation.</td><td>High</td><td>Use private clusters, restrict control plane CIDR, enable authorized networks.</td></tr>
+    <tr><td>Vulnerable container images</td><td>Unscanned or outdated images enable exploits.</td><td>Moderate-High</td><td>Use Artifact Registry scanning, Binary Authorization, image signing.</td></tr>
+    <tr><td>Misconfigured firewall rules</td><td>Broad ingress/egress in VPC exposes internal resources.</td><td>High</td><td>Apply least-privilege rules, audit VPC Firewall Rules Logs.</td></tr>
+    <tr><td>Weak service account key rotation</td><td>Keys not rotated or revoked after use.</td><td>Moderate</td><td>Automate rotation, disable manual key creation.</td></tr>
+    <tr><td>Insufficient Cloud Audit Logs</td><td>Missing logs prevent detection of unauthorized activity.</td><td>Moderate</td><td>Enable all audit logs (ADMIN_READ, DATA_WRITE/READ), export to SIEM.</td></tr>
+    <tr><td>Missing VPC Service Controls</td><td>Data exfiltration from sensitive projects via API endpoints.</td><td>High</td><td>Define VPC-SC perimeters, restrict private connectivity.</td></tr>
+    <tr><td>Shared projects for dev/prod</td><td>Cross-environment access leads to data leakage.</td><td>Moderate</td><td>Separate projects by environment, use org folders and policies.</td></tr>
+    <tr><td>Weak organization policy enforcement</td><td>Unrestricted resource creation leads to compliance gaps.</td><td>Moderate</td><td>Apply org-policy constraints (e.g., allowed images, regions).</td></tr>
+    <tr><td>No encryption on persistent disks</td><td>Data at rest exposed if disk copied or stolen.</td><td>High</td><td>Enable CMEK, enforce encryption on all storage.</td></tr>
+    <tr><td>Unrestricted Cloud Functions endpoints</td><td>Public invocations enable abuse or data leakage.</td><td>Moderate-High</td><td>Restrict via IAM, require authentication, validate inputs.</td></tr>
+    <tr><td>Insecure BigQuery dataset sharing</td><td>Datasets shared publicly or with broad access.</td><td>High</td><td>Restrict dataset access to groups, audit access lists.</td></tr>
+    <tr><td>Weak password / OAuth consent misuse</td><td>Users authorize malicious OAuth apps.</td><td>Moderate</td><td>Enforce OAuth consent screen verification, educate users, limit scopes.</td></tr>
+    <tr><td>Disabled Cloud KMS key rotation</td><td>Old encryption keys increase risk of compromise.</td><td>Moderate</td><td>Automate key rotation, monitor key age and use.</td></tr>
+    <tr><td>Unpatched GCE VMs</td><td>Vulnerable images exploited remotely.</td><td>High</td><td>Enable OS patch management, use VM Manager compliance reports.</td></tr>
+    <tr><td>Disabled Cloud Armor / WAF</td><td>Public web endpoints lack DDoS protection.</td><td>Moderate</td><td>Deploy Cloud Armor, use rate limiting, geo-blocking.</td></tr>
+    <tr><td>Lack of DLP controls for sensitive data</td><td>PHI/PII stored in GCS or BQ without DLP checks.</td><td>Moderate</td><td>Enable Cloud DLP scans, classify data, enforce alerts.</td></tr>
+    <tr><td>Ineffective monitoring and alerting</td><td>Security events unmonitored, delays incident response.</td><td>Moderate</td><td>Enable Security Command Center, integrate SIEM, define alerting policies.</td></tr>
+  </table>
+
+
+  <!-- HIPAA -->
+  ### HIPAA
+  <table>
+    <tr>
+      <th>Threat</th><th>Description</th><th>Severity Rating</th><th>Suggested Controls</th>
+    </tr>
+    <tr><td>Unauthorized access to PHI</td><td>Users gain PHI access without legitimate need.</td><td>High</td><td>Enforce RBAC, MFA, least privilege, regular access reviews.</td></tr>
+    <tr><td>PHI transmitted without encryption</td><td>Unencrypted transmission exposes PHI to interception.</td><td>High</td><td>Enforce TLS 1.2+, VPNs for remote connections, disable insecure protocols.</td></tr>
+    <tr><td>PHI stored without encryption</td><td>PHI at rest left unencrypted on disks or backups.</td><td>High</td><td>Apply AES-256 encryption, use HSM/KMS, limit key access.</td></tr>
+    <tr><td>Weak or absent key management</td><td>Poor key lifecycle handling enables decryption by attackers.</td><td>High</td><td>Enforce KMS rotation, separation of duties, key usage logging.</td></tr>
+    <tr><td>Incomplete audit trails</td><td>Lack of access logs hinders detection of misuse.</td><td>Moderate-High</td><td>Enable detailed auditing, retain per HIPAA retention period, SIEM correlation.</td></tr>
+    <tr><td>Insider misuse of PHI</td><td>Employees intentionally or accidentally leak PHI.</td><td>High</td><td>Implement DLP, least privilege, user behavior analytics, training.</td></tr>
+    <tr><td>Inadequate BAA coverage</td><td>Third-party vendors lack Business Associate Agreements.</td><td>High</td><td>Execute BAAs, verify compliance, maintain vendor inventory.</td></tr>
+    <tr><td>Insufficient breach notification plan</td><td>Delayed or missing notifications after incident.</td><td>Moderate</td><td>Define breach policy, response timelines, stakeholder roles.</td></tr>
+    <tr><td>Insecure disposal of PHI</td><td>Data remnants on retired media lead to disclosure.</td><td>Moderate</td><td>Apply secure erasure, degaussing, verified destruction processes.</td></tr>
+    <tr><td>Backup media unprotected</td><td>Unencrypted backups can be lost or stolen.</td><td>High</td><td>Encrypt backups, isolate physically/logically, test restores.</td></tr>
+    <tr><td>PHI in logs or telemetry</td><td>Logging inadvertently captures PHI.</td><td>Moderate</td><td>Redact sensitive fields, sanitize logs before aggregation.</td></tr>
+    <tr><td>Over-exposed cloud storage</td><td>Misconfigured cloud bucket exposes PHI publicly.</td><td>High</td><td>Apply strict ACLs, disable public access, continuous monitoring.</td></tr>
+    <tr><td>Lack of access recertification</td><td>Access rights not periodically reviewed.</td><td>Moderate</td><td>Perform quarterly recertifications, auto-remove inactive accounts.</td></tr>
+    <tr><td>Weak endpoint security</td><td>Endpoints storing PHI lack AV or encryption.</td><td>Moderate-High</td><td>Deploy EDR, enforce device encryption, patch management.</td></tr>
+    <tr><td>No segregation of environments</td><td>Mixing test and production PHI data risks leaks.</td><td>Moderate</td><td>Use anonymized data in test, enforce environment separation.</td></tr>
+    <tr><td>Missing DLP email controls</td><td>PHI sent via unsecured email channels.</td><td>Moderate-High</td><td>Implement DLP scanning, encrypt outbound emails.</td></tr>
+    <tr><td>Poor identity lifecycle management</td><td>Orphaned accounts retain PHI access.</td><td>Moderate</td><td>Automate provisioning/deprovisioning, sync with HR system.</td></tr>
+    <tr><td>Weak physical access controls</td><td>Unauthorized individuals can access servers storing PHI.</td><td>High</td><td>Secure server rooms, badge systems, CCTV, visitor logs.</td></tr>
+    <tr><td>Ineffective training &amp; awareness</td><td>Staff unaware of HIPAA obligations.</td><td>Moderate</td><td>Mandatory annual HIPAA/security training, phishing simulations.</td></tr>
+    <tr><td>No formal risk assessment</td><td>Organization lacks periodic HIPAA risk analysis.</td><td>Moderate</td><td>Perform annual risk assessments, track remediation, document results.</td></tr>
+  </table>
+
+
+  <!-- PRIVACY -->
+  ### Privacy
+  <table>
+    <tr>
+      <th>Threat</th><th>Description</th><th>Severity Rating</th><th>Suggested Controls</th>
+    </tr>
+    <tr><td>Unlawful data collection</td><td>Data collected without proper consent or legal basis.</td><td>High</td><td>Implement consent management, lawful basis registry, periodic audits.</td></tr>
+    <tr><td>Excessive data retention</td><td>Personal data kept longer than necessary.</td><td>Moderate</td><td>Define retention schedules, automate deletion, document justification.</td></tr>
+    <tr><td>Inadequate data minimization</td><td>Collecting more personal data than required.</td><td>Moderate</td><td>Apply data minimization policies, perform DPIA.</td></tr>
+    <tr><td>Lack of user consent tracking</td><td>No record of user consent for processing.</td><td>High</td><td>Maintain consent logs, enable withdrawal mechanisms.</td></tr>
+    <tr><td>Cross-border data transfer non-compliance</td><td>Data transferred to non-approved countries without safeguards.</td><td>High</td><td>Use SCCs, BCRs, or equivalent legal frameworks.</td></tr>
+    <tr><td>Insufficient anonymization/pseudonymization</td><td>Poor de-identification leads to re-identification risk.</td><td>Moderate-High</td><td>Apply irreversible anonymization, monitor re-ID risk.</td></tr>
+    <tr><td>Unauthorized data sharing with third parties</td><td>Sharing personal data without data sharing agreement.</td><td>High</td><td>Require DPAs with vendors, limit purpose, perform due diligence.</td></tr>
+    <tr><td>Weak access controls on personal data</td><td>Overly broad access to user data.</td><td>High</td><td>Enforce least privilege, MFA, regular access review.</td></tr>
+    <tr><td>Incomplete breach notification process</td><td>No timely notification to regulators or users.</td><td>Moderate-High</td><td>Define breach workflow, retain notification templates, test process.</td></tr>
+    <tr><td>Insufficient privacy-by-design</td><td>New features ignore privacy principles.</td><td>Moderate</td><td>Perform DPIAs early in design, embed privacy review in SDLC.</td></tr>
+    <tr><td>Insecure data deletion</td><td>Deleted records remain recoverable.</td><td>Moderate</td><td>Apply secure wipe and verification, validate backups.</td></tr>
+    <tr><td>Data subject request mishandling</td><td>DSRs (access, deletion) not handled correctly.</td><td>Moderate</td><td>Define DSR process, track requests, verify identity.</td></tr>
+    <tr><td>Inaccurate data records</td><td>Stale or incorrect data kept, violating accuracy principle.</td><td>Low-Moderate</td><td>Implement correction workflows, periodic data validation.</td></tr>
+    <tr><td>Missing records of processing activities (ROPA)</td><td>No central inventory of personal data flows.</td><td>Moderate</td><td>Maintain updated ROPA, assign owners, include purposes and retention.</td></tr>
+    <tr><td>Unencrypted personal data</td><td>Data at rest or in transit unencrypted.</td><td>High</td><td>Enforce encryption across all data layers.</td></tr>
+    <tr><td>Poor vendor oversight</td><td>Vendors mishandle data without oversight.</td><td>Moderate</td><td>Conduct periodic audits, require security assessments.</td></tr>
+    <tr><td>Lack of DLP monitoring</td><td>Data exfiltration goes undetected.</td><td>Moderate</td><td>Deploy DLP on endpoints, email, and cloud storage.</td></tr>
+    <tr><td>Misconfigured cookie consent</td><td>Cookies dropped before consent given.</td><td>Low-Moderate</td><td>Implement compliant consent banners, periodic scanning.</td></tr>
+    <tr><td>Weak anonymization in analytics</td><td>Personal identifiers persist in analytics data.</td><td>Moderate</td><td>Tokenize IDs, remove PII before analytics ingestion.</td></tr>
+    <tr><td>Employee misuse of personal data</td><td>Insider misuses access to personal information.</td><td>Moderate-High</td><td>Monitor access, enforce least privilege, provide privacy training.</td></tr>
+  </table>
+
+
+  <!-- LOW-CODE / NO-CODE -->
+ ### Low-Code / No-Code Platforms
+  <table>
+    <tr>
+      <th>Threat</th><th>Description</th><th>Severity Rating</th><th>Suggested Controls</th>
+    </tr>
+    <tr><td>Insecure data connections</td><td>Connectors expose sensitive data via weak auth.</td><td>High</td><td>Enforce OAuth, avoid storing credentials, review connectors.</td></tr>
+    <tr><td>Overly broad sharing of apps</td><td>Apps shared publicly expose internal data.</td><td>High</td><td>Limit sharing to groups, enforce enterprise sharing policy.</td></tr>
+    <tr><td>Lack of governance over app creation</td><td>Citizen developers deploy unvetted apps.</td><td>Moderate-High</td><td>Establish CoE, approval workflow, app cataloging.</td></tr>
+    <tr><td>Hard-coded secrets in formulas</td><td>Credentials embedded in app logic.</td><td>High</td><td>Use environment variables, secure vault integrations.</td></tr>
+    <tr><td>Insecure API calls</td><td>Direct API calls from client expose backend.</td><td>Moderate</td><td>Use backend proxy, restrict keys, enforce HTTPS.</td></tr>
+    <tr><td>No version control / rollback</td><td>Lack of versioning leads to undetected malicious updates.</td><td>Moderate</td><td>Implement app lifecycle management and version tracking.</td></tr>
+    <tr><td>Weak access control model</td><td>Role-based permissions not enforced properly.</td><td>Moderate-High</td><td>Apply RBAC, verify least privilege, disable guest access.</td></tr>
+    <tr><td>Lack of logging or audit trail</td><td>No audit records for app execution or data access.</td><td>Moderate</td><td>Enable platform audit logging, export to SIEM.</td></tr>
+    <tr><td>Unsanctioned integrations</td><td>Users connect apps to unapproved SaaS.</td><td>Moderate</td><td>Use allowlist connectors, CASB monitoring.</td></tr>
+    <tr><td>Data exfiltration via connectors</td><td>Data sent to personal cloud accounts.</td><td>High</td><td>Restrict connector usage, monitor flows, implement DLP.</td></tr>
+    <tr><td>Insecure public forms</td><td>Anonymous submissions used for injection attacks.</td><td>Moderate</td><td>Validate inputs, use CAPTCHA, monitor spam.</td></tr>
+    <tr><td>Shadow IT through personal accounts</td><td>Employees use personal tenants for business apps.</td><td>Moderate</td><td>Disable personal app publishing, enforce org-managed tenants.</td></tr>
+    <tr><td>Missing lifecycle management</td><td>Apps persist after owner leaves.</td><td>Moderate</td><td>Assign app ownership policies, periodic orphaned app cleanup.</td></tr>
+    <tr><td>Unreviewed external components</td><td>Reused community components contain vulnerabilities.</td><td>Moderate</td><td>Maintain approved component library, perform dependency scans.</td></tr>
+    <tr><td>Insecure data sources</td><td>Apps connected to databases without encryption.</td><td>High</td><td>Require encrypted connections, managed identities.</td></tr>
+    <tr><td>No segregation of dev/test/prod</td><td>Same environment used for all stages.</td><td>Moderate</td><td>Create isolated environments, implement promotion workflow.</td></tr>
+    <tr><td>Lack of training on security patterns</td><td>Citizen devs unaware of security implications.</td><td>Moderate</td><td>Provide secure development training and guidelines.</td></tr>
+    <tr><td>Poor backup and recovery</td><td>App configurations lost during outage.</td><td>Low-Moderate</td><td>Enable automated backups, document recovery procedures.</td></tr>
+    <tr><td>Data privacy non-compliance</td><td>Apps collect personal data without consent.</td><td>Moderate</td><td>Embed privacy review, use approved templates.</td></tr>
+    <tr><td>Disabled audit export</td><td>Security events not exported to monitoring.</td><td>Low-Moderate</td><td>Integrate with SIEM or central log management.</td></tr>
+  </table>
+
+
+  <!-- STRIDE -->
+ ### STRIDE
+
+  <table>
+    <tr>
+      <th>Threat</th><th>Description</th><th>Severity Rating</th><th>Suggested Controls</th>
+    </tr>
+    <tr><td>Credential spoofing</td><td>Attacker impersonates user or service using stolen credentials.</td><td>High</td><td>MFA, passwordless auth, detect impossible travel.</td></tr>
+    <tr><td>API key reuse or theft</td><td>Reused API keys allow impersonation.</td><td>High</td><td>Rotate keys, bind to IP/range, enforce OAuth2.</td></tr>
+    <tr><td>Session hijacking</td><td>Stolen session tokens used for spoofing.</td><td>High</td><td>Use secure cookies, short-lived tokens, token binding.</td></tr>
+    <tr><td>Data tampering in transit</td><td>Unencrypted traffic modified by MITM.</td><td>High</td><td>Enforce HTTPS/TLS1.2+, HSTS, integrity checks.</td></tr>
+    <tr><td>Configuration tampering</td><td>Attacker changes system settings or security controls.</td><td>Moderate</td><td>Implement configuration baselines, alert on changes.</td></tr>
+    <tr><td>Malicious code injection</td><td>Code or script tampering changes app behavior.</td><td>High</td><td>Validate inputs, code signing, use CI/CD integrity checks.</td></tr>
+    <tr><td>Log repudiation</td><td>User denies action due to missing or tampered logs.</td><td>Moderate</td><td>Use tamper-evident logs, immutable storage.</td></tr>
+    <tr><td>Inadequate audit logging</td><td>Logs missing user IDs/time, no accountability.</td><td>Moderate</td><td>Ensure detailed audit logs, correlate with identity provider.</td></tr>
+    <tr><td>Unencrypted sensitive data</td><td>Data leakage via plain text storage or transmission.</td><td>High</td><td>Encrypt data at rest/in transit, apply key management.</td></tr>
+    <tr><td>Insecure backup exposure</td><td>Backup copies stolen or publicly accessible.</td><td>Moderate</td><td>Encrypt backups, restrict access, offsite secure storage.</td></tr>
+    <tr><td>Excessive information disclosure</td><td>Error messages reveal stack traces or secrets.</td><td>Moderate</td><td>Sanitize errors, disable verbose debug in production.</td></tr>
+    <tr><td>Denial of Service (DoS) attack</td><td>Resource exhaustion leads to downtime.</td><td>High</td><td>Implement rate limiting, auto-scaling, WAF/CDN.</td></tr>
+    <tr><td>Application-level DoS</td><td>Logic flaws allow repeated expensive operations.</td><td>Moderate</td><td>Optimize code, limit concurrent sessions, caching.</td></tr>
+    <tr><td>Flooding or volumetric DDoS</td><td>Network flooding overwhelms services.</td><td>High</td><td>Use DDoS protection service, geo-blocking, throttling.</td></tr>
+    <tr><td>Privilege escalation via misconfig</td><td>Misconfigured roles allow privilege gain.</td><td>High</td><td>Apply least privilege, review IAM/RBAC roles.</td></tr>
+    <tr><td>Exploiting unpatched vulnerabilities</td><td>Attackers elevate privileges through old CVEs.</td><td>High</td><td>Patch management, vulnerability scanning.</td></tr>
+    <tr><td>Insecure dependency injection</td><td>Vulnerable libraries exploited for EoP.</td><td>Moderate</td><td>Use dependency scanning, pin versions.</td></tr>
+    <tr><td>Weak boundary controls</td><td>Network segmentation failure enables lateral movement.</td><td>Moderate-High</td><td>Enforce segmentation, zero-trust network.</td></tr>
+    <tr><td>Missing anti-repudiation measures</td><td>Lack of digital signatures allows transaction denial.</td><td>Moderate</td><td>Implement signing and verification, use tamper-proof logs.</td></tr>
+    <tr><td>Ineffective monitoring for STRIDE categories</td><td>No specific detection for spoofing/tampering/disclosure.</td><td>Moderate</td><td>Map detections to STRIDE matrix, use MITRE ATT&amp;CK coverage.</td></tr>
+  </table>
+
+
+
+# RaD-TM Threat Templates: Azure, GCP, HIPAA, Privacy, Low-Code/No-Code, STRIDE
+
+---
+
+## Threat Template: **Azure**
+
+**Scope / Context:** Deployment of workloads and services in Microsoft Azure (IaaS / PaaS / SaaS)
+
+| Threat | Description | Default Severity | Suggested Controls |
+|--------|-------------|------------------|---------------------|
+| Compromised Azure AD account | An attacker gains access to an Azure AD user or admin account and controls subscriptions or data. | High | Enforce MFA, conditional access, passwordless auth, disable legacy protocols. |
+| Stolen service principal or client secret | Leaked or hard-coded client secrets allow unauthorized automation or API access. | High | Use managed identities, Key Vault secret rotation, audit App Registrations. |
+| Over-privileged RBAC roles | Excessive permissions on users or service principals increase attack surface. | High | Implement least privilege, review RBAC assignments, use PIM for JIT access. |
+| Public Storage Account containers | Blob containers set to public allow data leakage. | High | Disable public access, use Private Endpoints, monitor anonymous access. |
+| Key Vault public endpoint exposure | Vault accessible from internet without network restrictions. | High | Restrict via Private Endpoint and access policies, enable firewall rules. |
+| Missing patch management on VMs | Outdated images expose known vulnerabilities. | High | Use Update Management, hardened base images, Defender for Cloud. |
+| NSG overly permissive rules | Open inbound/outbound traffic allows lateral movement or external exposure. | High | Restrict NSG rules, apply least privilege networking, log NSG flows. |
+| Misconfigured Azure Firewall / WAF | Weak or absent layer-7 filtering allows attacks through web endpoints. | Moderate | Enable WAF with OWASP rules, restrict inbound IPs, monitor logs. |
+| Shared admin accounts | Shared credentials limit accountability and increase compromise risk. | Moderate | Use individual accounts, enforce PIM, disable shared secrets. |
+| Missing diagnostic / activity logs | Incomplete logging delays incident detection. | Moderate | Enable Azure Monitor, send logs to Sentinel, ensure retention policies. |
+| Exposed management ports (RDP/SSH) | Directly exposed ports to Internet allow brute force or remote access. | High | Use Just-in-Time (JIT) VM access, restrict IPs, require VPN. |
+| Misconfigured App Service auth | Web apps not enforcing authentication allow data exposure. | High | Enable Azure AD or OAuth auth, require HTTPS, disable anonymous access. |
+| Data not encrypted at rest | Storage or DB without encryption enable data theft. | High | Use Azure Storage Service Encryption, TDE for SQL, customer-managed keys. |
+| Weak key rotation policy | Keys and secrets not rotated regularly remain vulnerable. | Moderate | Automate rotation, use Managed Identities, audit expiry dates. |
+| Insufficient backup protection | Backup storage can be deleted or overwritten by attacker. | Moderate | Enable soft delete and immutable backups, restrict delete permissions. |
+| Unrestricted outbound internet access | Workloads can reach arbitrary endpoints, risk of data exfiltration. | Moderate | Use NSG egress restrictions, proxy/firewall, Defender for Cloud egress alerts. |
+| Lack of tagging / asset inventory | Untracked resources create blind spots for security monitoring. | Low-Moderate | Enforce tagging policy, use Azure Policy for compliance and inventory. |
+| Resource locks missing | Critical resources can be deleted by mistake or attacker. | Moderate | Apply resource locks (CanNotDelete), audit removal attempts. |
+| Misconfigured Azure Policy compliance | Policies not enforced allow non-compliant deployments. | Moderate | Use initiative assignments, deployIfNotExists rules, monitor compliance. |
+| Insecure API Management configuration | APIs expose sensitive backend endpoints. | High | Use OAuth 2.0, validate JWT tokens, enable rate limiting and logging. |
+
 
 ## Full Example
 
